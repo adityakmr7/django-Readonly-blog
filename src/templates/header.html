@@ -1,0 +1,33 @@
+<header>
+  <nav class="navbar navbar-expand-md navbar-light bg-custom shadow-sm">
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a href="#" class="nav-link py-0">EDITION</a>
+                </li>
+            </ul>
+        </div>
+        <div class="mx-auto order-0">
+            <a href="#" class="navbar-brand mx-auto py-0">BLOG</a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Logout</a>
+              </li>
+            {% comment %} {% if user.is_authenticated %}
+            {% else %}
+            {% endif %} {% endcomment %}
+              <li class="nav-item">
+                <a class="nav-link" href="#">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Register</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+</header>
