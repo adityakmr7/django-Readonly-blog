@@ -21,3 +21,13 @@ def postDetail(request, id):
         'post': post
     }
     return render(request, 'post_detail.html', context)
+
+
+def categoryDetail(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    post = Post.objects.filter(category=category)
+    context ={
+        'category': category,
+        'post': post
+    }
+    return render(request, 'category_detail.html', context)
