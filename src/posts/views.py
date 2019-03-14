@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Post, Author, Category
 # Create your views here.
 def index(request):
@@ -14,3 +14,10 @@ def index(request):
         'opinion_post': opinion_post
     }
     return render(request, 'index.html', context)
+
+def postDetail(request, id):
+    post = get_object_or_404(Post, id=id)
+    context ={
+        'post': post
+    }
+    return render(request, 'post_detail.html', context)
