@@ -8,7 +8,7 @@ def index(request):
     opinion_post = Post.objects.filter(category__title__iexact='opinion')[0:3]
     # add a video field here
     context = {
-        'object_list': featured,
+        'featured_post': featured,
         'latest_post': latest_post,
         'startup_post': startup_post,
         'opinion_post': opinion_post

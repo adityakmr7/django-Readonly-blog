@@ -7,9 +7,6 @@
       <h4>{{category.title}}</h4>
       <p>lorem ipsum hohrth ht</p>
     </div>
-    <div class="col-md-6">
-      <a class="float-right" href="#">See more</a>
-    </div>
   </div>
 </div>
 <div class="album py-5 bg-light">
@@ -21,7 +18,7 @@
             <img width="100%" height="225" class="bd-placeholder-img card-img-top" src="{{obj.thumbnail.url}}"/>
             <div>
               {% for cat in obj.category.all %}
-                <a href="#">{{cat}}</a>
+                <a href="{% url 'category-detail' slug=cat.slug %}">{{cat}}</a>
               {% endfor %}
             </div>
             <div class="card-body">

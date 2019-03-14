@@ -5,9 +5,9 @@ from django.conf import settings
 from posts.views import index,postDetail, categoryDetail
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('post/<slug>/', postDetail, name='post-detail'),
-    path('category/<slug>/', categoryDetail),
+    path('', index, name="home"),
+    path('<slug>/', postDetail, name='post-detail'),
+    path('category/<slug>/', categoryDetail, name='category-detail'),
     path('tinymce/', include('tinymce.urls'))
 ]
 
