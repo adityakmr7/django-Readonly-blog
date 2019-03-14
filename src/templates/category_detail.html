@@ -16,14 +16,14 @@
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <img width="100%" height="225" class="bd-placeholder-img card-img-top" src="{{obj.thumbnail.url}}"/>
-            <div>
+            <div class="container">
               {% for cat in obj.category.all %}
-                <a href="{% url 'category-detail' slug=cat.slug %}">{{cat}}</a>
+                <a class="text-muted" href="{% url 'category-detail' slug=cat.slug %}">{{cat}}</a>
               {% endfor %}
             </div>
             <div class="card-body">
-              <h4>{{obj.title}}</h4>
-              <p class="card-text">{{obj.overview}}</p>
+              <h4>{{obj.title|truncatewords:"4"}}</h4>
+              <p class="card-text">{{obj.overview|truncatewords:"10"}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <small class="text-muted">{{obj.timestamp|timesince}}</small>
               </div>
@@ -34,9 +34,5 @@
       </div>
     </div>
 </div>
-
-
-
-
 
 {% endblock %}

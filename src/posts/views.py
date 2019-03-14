@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post, Author, Category
 # Create your views here.
 def index(request):
@@ -15,10 +16,30 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+def blog(request):
+    post_list = Post.objects.all()
+    paginator = Paginator(post_list, 6)
+    page_request_var = 'page'
+    page = request.GET.get(page_request_var)
+    try:
+        paginated_queryset = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_queryset = paginator.page(1)
+    except EmptyPage:
+        paginated_queryset = paginator.page(paginator.num_pages)
+    context = {
+        'queryset' : paginated_queryset,
+        'page_request_var': page_request_var,
+    }
+    return render(request, 'blog.html', context)
+
+
 def postDetail(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    latest_post = Post.objects.order_by('-timestamp')[0:4]
     context ={
-        'post': post
+        'post': post,
+        'latest_post': latest_post
     }
     return render(request, 'post_detail.html', context)
 

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row">
+      {% for obj in queryset %}
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img width="100%" height="225" class="bd-placeholder-img card-img-top" src="{{obj.thumbnail.url}}"/>
+            <div class="container">
+              {% for cat in obj.category.all %}
+              <a class="text-muted" href="{% url 'category-detail' slug=cat.slug%}">{{cat}}</a>
+              {% endfor %}
+            </div>
+            <div class="card-body">
+              <a href="{% url 'post-detail' slug=obj.slug %}">
+                <h4>{{obj.title|truncatewords:"4"}}</h4>
+              </a>
+              <p class="text-muted">by {{obj.author.user}}</p>
+              <hr/>
+              <!--<p class="card-text">{{obj.overview|truncatewords:"10"}}</p>-->
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">{{obj.timestamp|timesince}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+</div>
+<!--<nav class="text-center" aria-label="...">-->
+  <!--<ul class="pagination">-->
+    <!--<li class="page-item disabled">-->
+      <!--<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>-->
+    <!--</li>-->
+    <!--<li class="page-item"><a class="page-link" href="#">1</a></li>-->
+    <!--<li class="page-item active" aria-current="page">-->
+      <!--<a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>-->
+    <!--</li>-->
+    <!--<li class="page-item"><a class="page-link" href="#">3</a></li>-->
+    <!--<li class="page-item">-->
+      <!--<a class="page-link" href="#">Next</a>-->
+    <!--</li>-->
+  <!--</ul>-->
+<!--</nav>-->
+<nav aria-label="Page navigation example">
+      <ul class="pagination pagination-template d-flex justify-content-center">
+        {% if queryset.has_previous %}
+        <li class="page-item"><a href="?{{page_request_var}}={{queryset.previous_page_number}}" class="page-link"> <i class="fa fa-angle-left"></i></a></li>
+        {% endif %}
+        <li class="page-item"><a href="?{{page_request_var}}={{queryset.number}}" class="page-link active">{{queryset.number}}</a></li>
+        {% if queryset.has_next %}
+        <li class="page-item"><a href="?{{page_request_var}}={{queryset.next_page_number}}" class="page-link"> <i class="fa fa-angle-right"></i></a></li>
+        {% endif %}
+      </ul>
+    </nav>
+{% endblock %}
