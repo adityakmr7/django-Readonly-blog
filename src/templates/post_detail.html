@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <!-- Latest Posts -->
+        <main class="post blog-post col-lg-8">
+          <div class="container">
+            <div class="post-single">
+              <div class="post-thumbnail"><img src="{{post.thumbnail.url}}" alt="..." class="img-fluid"></div>
+              <div class="post-details">
+                <div class="post-meta d-flex justify-content-between">
+                  <div class="category">
+                  {% for cat in post.category.all %}
+                  <a href="#">{{cat}}</a>
+                  {% endfor %}
+                  </div>
+                  <div>
+                    <a href=""></a>
+                    <a href=""></a>
+
+                  </div>
+                </div>
+                <h1>{{post.title}}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
+                <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
+                    <div class="avatar"><img src="{{post.author.profile_picture.url}}" alt="..." class="img-fluid"></div>
+                    <div class="title"><span>{{post.author.user.username}}</span></div></a>
+                  <div class="d-flex align-items-center flex-wrap">
+                    <div class="date"><i class="icon-clock"></i>{{post.timestamp|timesince}}</div>
+                    <div class="views"><i class="icon-eye"></i>{{post.view_count}}</div>
+                    <div class="comments meta-last"><i class="icon-comment"></i>{{post.comment_count}}</div>
+                  </div>
+                </div>
+                <div class="post-body">
+                  {{post.content | safe}}
+                </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+{% endblock %}
