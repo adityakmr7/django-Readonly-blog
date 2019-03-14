@@ -1,9 +1,78 @@
+<style>
+    .overlay {
+      height: 100%;
+      width: 100%;
+      display: none;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0, 0.9); /* Black with a little bit see-through */
+    }
+
+    /* The content */
+    .overlay-content {
+      position: relative;
+      top: 46%;
+      width: 80%;
+      text-align: center;
+      margin-top: 30px;
+      margin: auto;
+    }
+
+    /* Close button */
+    .overlay .closebtn {
+      position: absolute;
+      top: 20px;
+      right: 45px;
+      font-size: 60px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .overlay .closebtn:hover {
+      color: #ccc;
+    }
+
+    /* Style the search field */
+    .overlay input[type=text] {
+      padding: 15px;
+      font-size: 17px;
+      border: none;
+      float: left;
+      width: 80%;
+      background: white;
+    }
+
+    .overlay input[type=text]:hover {
+      background: #f1f1f1;
+    }
+
+    /* Style the submit button */
+    .overlay button {
+      float: left;
+      width: 20%;
+      padding: 15px;
+      background: #ddd;
+      font-size: 17px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .overlay button:hover {
+      background: #bbb;
+    }
+</style>
 <header>
   <nav class="navbar navbar-expand-md navbar-light bg-custom shadow-sm">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
             <ul id="sidebarCollapse" class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a href="#" class="nav-link py-0">BLOG</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="#" onclick="openSearch()" class="nav-link py-0"><i class="fas fa-search"></i></a>
                 </li>
             </ul>
         </div>
@@ -30,4 +99,24 @@
             </ul>
         </div>
     </nav>
+    <div id="myOverlay" class="overlay">
+        <span class="closebtn" onclick="closeSearch()" title="Close Overlay">X</span>
+        <div class="overlay-content">
+            <form action="{% url 'search' %}">
+            <input type="text" placeholder="Search.." name="q">
+            <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
 </header>
+<script>
+    // Open the full screen search box
+    function openSearch() {
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    // Close the full screen search box
+    function closeSearch() {
+      document.getElementById("myOverlay").style.display = "none";
+    }
+</script>

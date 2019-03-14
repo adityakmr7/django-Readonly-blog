@@ -1,7 +1,22 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Q
 from .models import Post, Author, Category
 # Create your views here.
+
+def search(request):
+    queryset = Post.objects.all()
+    query = request.GET.get('q')
+    if query:
+        queryset = queryset.filter(
+            Q(title__icontains = query) |
+            Q(content__icontains = query)
+        ).distinct()
+    context = {
+       'queryset': queryset
+    }
+    return render(request, 'search_result.html', context)
+
 def index(request):
     featured = Post.objects.filter(featured = True)   #put this on carousel
     latest_post = Post.objects.order_by('-timestamp')[:6]
