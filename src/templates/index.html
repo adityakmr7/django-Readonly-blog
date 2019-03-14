@@ -32,7 +32,9 @@
               {% endfor %}
             </div>
             <div class="card-body">
-              <h4>{{obj.title}}</h4>
+              <a href="{% url 'post-detail' slug=obj.slug %}">
+                <h4>{{obj.title}}</h4>
+              </a>
               <p class="card-text">{{obj.overview}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <small class="text-muted">{{obj.timestamp|timesince}}</small>
@@ -69,7 +71,7 @@
               {% endfor %}
             </div>
             <div class="card-body">
-              <h4>{{obj.title}}</h4>
+              <a href="{% url 'post-detail' slug=obj.slug %}"><h4>{{obj.title}}</h4></a>
               <p class="card-text">{{obj.overview}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <small class="text-muted">{{obj.timestamp|timesince}}</small>
