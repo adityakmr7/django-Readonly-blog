@@ -10,7 +10,7 @@
             <img width="100%" height="225" class="bd-placeholder-img card-img-top" src="{{obj.thumbnail.url}}"/> 
             <div class="container">
               {% for cat in obj.category.all %}
-              <a class="text-muted" href="{% url 'category-detail' slug=cat.slug%}">{{cat}}</a>
+              <a class="text-muted" href="{% url 'category-detail' slug=cat.slug %}">{{cat}}</a>
               {% endfor %}
             </div>
             <div class="card-body">
