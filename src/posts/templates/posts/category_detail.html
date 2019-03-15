@@ -1,24 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'posts/base.html' %}
 {% block content %}
-    <div class="album py-5 bg-light">
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>{{category.title}}</h4>
+      <p>lorem ipsum hohrth ht</p>
+    </div>
+  </div>
+</div>
+<div class="album py-5 bg-light">
     <div class="container">
       <div class="row">
-      {% for obj in queryset %}
+      {% for obj in post %}
         <div class="col-md-4">
           <div class="card mb-4 shadow-sm">
             <img width="100%" height="225" class="bd-placeholder-img card-img-top" src="{{obj.thumbnail.url}}"/>
             <div class="container">
               {% for cat in obj.category.all %}
-              <a class="text-muted" href="{% url 'category-detail' slug=cat.slug%}">{{cat}}</a>
+                <a class="text-muted" href="{% url 'category-detail' slug=cat.slug %}">{{cat}}</a>
               {% endfor %}
             </div>
             <div class="card-body">
-              <a href="{% url 'post-detail' slug=obj.slug %}">
-                <h4>{{obj.title|truncatewords:"4"}}</h4>
-              </a>
-              <p class="text-muted">by {{obj.author.user}}</p>
-              <hr/>
-              <!--<p class="card-text">{{obj.overview|truncatewords:"10"}}</p>-->
+              <h4>{{obj.title|truncatewords:"4"}}</h4>
+              <p class="card-text">{{obj.overview|truncatewords:"10"}}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <small class="text-muted">{{obj.timestamp|timesince}}</small>
               </div>
@@ -29,4 +34,5 @@
       </div>
     </div>
 </div>
+
 {% endblock %}

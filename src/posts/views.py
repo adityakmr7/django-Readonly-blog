@@ -15,7 +15,7 @@ def search(request):
     context = {
        'queryset': queryset
     }
-    return render(request, 'search_result.html', context)
+    return render(request, 'posts/search_result.html', context)
 
 def index(request):
     featured = Post.objects.filter(featured = True)   #put this on carousel
@@ -29,7 +29,7 @@ def index(request):
         'startup_post': startup_post,
         'opinion_post': opinion_post
     }
-    return render(request, 'index.html', context)
+    return render(request, 'posts/index.html', context)
 
 def blog(request):
     post_list = Post.objects.all()
@@ -46,7 +46,7 @@ def blog(request):
         'queryset' : paginated_queryset,
         'page_request_var': page_request_var,
     }
-    return render(request, 'blog.html', context)
+    return render(request, 'posts/blog.html', context)
 
 
 def postDetail(request, slug):
@@ -56,7 +56,7 @@ def postDetail(request, slug):
         'post': post,
         'latest_post': latest_post
     }
-    return render(request, 'post_detail.html', context)
+    return render(request, 'posts/post_detail.html', context)
 
 
 def categoryDetail(request, slug):
@@ -66,4 +66,4 @@ def categoryDetail(request, slug):
         'category': category,
         'post': post
     }
-    return render(request, 'category_detail.html', context)
+    return render(request, 'posts/category_detail.html', context)
