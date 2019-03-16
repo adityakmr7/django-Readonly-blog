@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 from .models import Post, Author, Category
 # Create your views here.
 
@@ -48,7 +49,7 @@ def blog(request):
     }
     return render(request, 'posts/blog.html', context)
 
-
+@login_required
 def postDetail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     latest_post = Post.objects.order_by('-timestamp')[0:4]
