@@ -14,11 +14,7 @@
                   <a href="{% url 'category-detail' slug=cat.slug %}">{{cat}}</a>
                   {% endfor %}
                   </div>
-                  <div>
-                    <a href=""></a>
-                    <a href=""></a>
-
-                  </div>
+                  
                 </div>
                 <h1>{{post.title}}<a href="#"><i class="fa fa-bookmark-o"></i></a></h1>
                 <div class="post-footer d-flex align-items-center flex-column flex-sm-row"><a href="#" class="author d-flex align-items-center flex-wrap">
@@ -33,6 +29,20 @@
                 <div class="post-body">
                   {{post.content | safe}}
                 </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                {% if post.previous_post %}
+                <a href="{{post.previous_post.get_absolute_url}}">Previous Post</a>
+                <h6>{{post.previous_post.title}}</h6>
+                {% endif %}
+              </div>
+              <div class="col-md-6">
+                {% if post.next_post %}
+                <a href="{{post.next_post.get_absolute_url}}">Next Post</a>
+                <h6>{{post.next_post.title}}</h6>
+                {% endif %}
+              </div>
             </div>
             {% if request.user.is_authenticated %}
             <div class="container">
