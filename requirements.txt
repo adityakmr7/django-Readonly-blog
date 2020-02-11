@@ -1,4 +1,4 @@
-Django==2.1.7
+Django==2.2.10
 django-crispy-forms==1.7.2
 django-slugger==1.1.2
 django-tinymce4-lite==1.7.4
